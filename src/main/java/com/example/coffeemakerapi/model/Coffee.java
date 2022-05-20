@@ -3,6 +3,8 @@ package com.example.coffeemakerapi.model;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 
@@ -15,34 +17,46 @@ public class Coffee {
     private Integer id;
 
     @Column(name = "coffee_name")
-    @Pattern(regexp = "(^Капучино$)|(^Латте$)|(^Американо$)|(^Эспрессо$)|(^Свой вариант$)", message = "Введите Капучино|Латте|Американо|Эспрессо" +
-            " или Свой вариант")
+    @Pattern(regexp = "(^Капучино$)|(^Латте$)|(^Американо$)|(^Эспрессо$)|(^Свой вариант$)")
     private String nameCoffee;
 
-    @Column(name = "milk")
-    @Pattern(regexp = "(^Добавить$)|(^Без молока$)", message = "Введите Добавить если хотите с молоком")
-    private String milk;
+    @Column(name = "amount_syrup_maple")
+    @Min(0) @Max(2)
+    private int amountSyrupMaple;
 
-    @Column(name = "syrup")
-    @Pattern(regexp = "(^Кленовый$)|(^Кокосовый$)|(^Миндальный$)|(^Без сиропа$)", message = "Введите: Кленовый|Кокосовый|Миндальный если хотите с сиропом")
-    private String syrup;
+    @Column(name = "amount_syrup_coconut")
+    @Min(0) @Max(2)
+    private int amountSyrupCoconut;
+
+    @Column(name = "amount_syrup_almond")
+    @Min(0) @Max(2)
+    private int amountSyrupAlmond;
+
+    @Column(name = "amount_syrup_vanilla")
+    @Min(0) @Max(2)
+    private int amountSyrupVanilla;
+
+    @Column(name = "coffee_beans")
+    @Min(1) @Max(3)
+    private int coffeeBeans;
+
+    @Column(name = "water")
+    @Min(1) @Max(3)
+    private int water;
+
+    @Column(name = "milk")
+    @Min(0) @Max(2)
+    private int milk;
 
     @Column(name = "sugar")
-    @Pattern(regexp = "(^Добавить$)|(^Без сахара$)", message = "Введите Добавить если хотите с сахаром")
-    private String sugar;
+    @Min(0) @Max(5)
+    private int sugar;
 
     @Column(name = "date_cooking")
     @NotNull
-    private LocalDateTime date;
+    private LocalDateTime dateCooking;
 
     public Coffee() {
-    }
-    public Coffee(String nameCoffee, String milk, String syrup, String sugar) {
-        this.nameCoffee = nameCoffee;
-        this.milk = milk;
-        this.syrup = syrup;
-        this.sugar = sugar;
-        this.date = LocalDateTime.now();
     }
 
     public String getNameCoffee() {
@@ -53,35 +67,75 @@ public class Coffee {
         this.nameCoffee = nameCoffee;
     }
 
-    public String getMilk() {
+    public int getAmountSyrupMaple() {
+        return amountSyrupMaple;
+    }
+
+    public void setAmountSyrupMaple(int amountSyrupMaple) {
+        this.amountSyrupMaple = amountSyrupMaple;
+    }
+
+    public int getAmountSyrupCoconut() {
+        return amountSyrupCoconut;
+    }
+
+    public void setAmountSyrupCoconut(int amountSyrupCoconut) {
+        this.amountSyrupCoconut = amountSyrupCoconut;
+    }
+
+    public int getAmountSyrupAlmond() {
+        return amountSyrupAlmond;
+    }
+
+    public void setAmountSyrupAlmond(int amountSyrupAlmond) {
+        this.amountSyrupAlmond = amountSyrupAlmond;
+    }
+
+    public int getAmountSyrupVanilla() {
+        return amountSyrupVanilla;
+    }
+
+    public void setAmountSyrupVanilla(int amountSyrupVanilla) {
+        this.amountSyrupVanilla = amountSyrupVanilla;
+    }
+
+    public int getCoffeeBeans() {
+        return coffeeBeans;
+    }
+
+    public void setCoffeeBeans(int coffeeBeans) {
+        this.coffeeBeans = coffeeBeans;
+    }
+
+    public int getWater() {
+        return water;
+    }
+
+    public void setWater(int water) {
+        this.water = water;
+    }
+
+    public int getMilk() {
         return milk;
     }
 
-    public void setMilk(String milk) {
+    public void setMilk(int milk) {
         this.milk = milk;
     }
 
-    public String getSyrup() {
-        return syrup;
-    }
-
-    public void setSyrup(String syrup) {
-        this.syrup = syrup;
-    }
-
-    public String getSugar() {
+    public int getSugar() {
         return sugar;
     }
 
-    public void setSugar(String sugar) {
+    public void setSugar(int sugar) {
         this.sugar = sugar;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDateTime getDateCooking() {
+        return dateCooking;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setDateCooking(LocalDateTime dateCooking) {
+        this.dateCooking = dateCooking;
     }
 }
