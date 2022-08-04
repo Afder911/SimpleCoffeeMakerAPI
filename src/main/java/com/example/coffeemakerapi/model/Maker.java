@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "coffee_maker_info")
-public class CoffeeMaker {
+public class Maker {
 
     @Id
     private final Integer id = 1;
@@ -71,7 +71,7 @@ public class CoffeeMaker {
     @NotNull
     private LocalDateTime dateLastCleaning;
 
-    public CoffeeMaker() {
+    public Maker() {
         this.coffeeBeansLevel = 100;
         this.sugarLevel = 100;
         this.waterLevel = 100;
@@ -83,32 +83,6 @@ public class CoffeeMaker {
         this.pollutionLevel = 1;
         this.dateLastRefill = LocalDateTime.now();
         this.dateLastPartialFilling = LocalDateTime.now();
-        this.dateLastCleaning = LocalDateTime.now();
-    }
-
-    public void refillAll() {
-        this.coffeeBeansLevel = 100;
-        this.sugarLevel = 100;
-        this.waterLevel = 100;
-        this.milkLevel = 50;
-        this.mapleSyrupLevel = 15;
-        this.coconutSyrupLevel = 15;
-        this.almondSyrupLevel = 15;
-        this.vanillaSyrupLevel = 15;
-        this.pollutionLevel +=1;
-        this.dateLastRefill = LocalDateTime.now();
-    }
-
-    public void clear() {
-        this.coffeeBeansLevel = 0;
-        this.sugarLevel = 0;
-        this.waterLevel = 0;
-        this.milkLevel = 0;
-        this.mapleSyrupLevel = 0;
-        this.coconutSyrupLevel = 0;
-        this.almondSyrupLevel = 0;
-        this.vanillaSyrupLevel = 0;
-        this.pollutionLevel = 0;
         this.dateLastCleaning = LocalDateTime.now();
     }
 

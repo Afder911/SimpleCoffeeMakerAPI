@@ -1,11 +1,11 @@
 package com.example.coffeemakerapi.model;
 
+import com.example.coffeemakerapi.enums.CoffeeType;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,9 +16,9 @@ public class Coffee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "coffee_name")
-    @Pattern(regexp = "(^Капучино$)|(^Латте$)|(^Американо$)|(^Эспрессо$)|(^Свой вариант$)")
-    private String nameCoffee;
+    @Column(name = "coffee_type")
+    @Enumerated(EnumType.STRING)
+    CoffeeType coffeeType;
 
     @Column(name = "amount_syrup_maple")
     @Min(0) @Max(2)
@@ -59,12 +59,12 @@ public class Coffee {
     public Coffee() {
     }
 
-    public String getNameCoffee() {
-        return nameCoffee;
+    public CoffeeType getCoffeeType() {
+        return coffeeType;
     }
 
-    public void setNameCoffee(String nameCoffee) {
-        this.nameCoffee = nameCoffee;
+    public void setCoffeeType(CoffeeType coffeeType) {
+        this.coffeeType = coffeeType;
     }
 
     public int getAmountSyrupMaple() {
